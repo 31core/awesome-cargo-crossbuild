@@ -39,6 +39,41 @@ Start building!
 cargo build --release --target x86_64-unknown-freebsd
 ```
 
+## NetBSD target
+
+Install rust standard library for `x86_64-unknown-netbsd`.
+
+```shell
+rustup target add x86_64-unknown-netbsd
+```
+
+Download NetBSD root, here we extract it into `~/netbsd-sysroot`.
+
+```shell
+wget https://cdn.netbsd.org/pub/NetBSD/NetBSD-10.1/amd64/binary/sets/base.tar.xz
+wget https://cdn.netbsd.org/pub/NetBSD/NetBSD-10.1/amd64/binary/sets/comp.tar.xz
+mkdir ~/netbsd-sysroot
+tar -xf base.tar.xz -C ~/netbsd-sysroot
+tar -xf comp.tar.xz -C ~/netbsd-sysroot
+```
+
+Create a symbol link to crt0.o.
+```shell
+ln -s ~/netbsd-sysroot/usr/lib/crt0.o ~/netbsd-sysroot/usr/lib/Scrt1.o
+```
+
+Set up linker `~/.cargo/config.toml`.
+```toml
+[target.x86_64-unknown-netbsd]
+linker = "clang"
+rustflags = [
+  "-C", "link-arg=--sysroot=/home/xxx/netbsd-sysroot",
+  "-C", "link-arg=-Wl,--dynamic-linker=/libexec/ld.elf_so",
+]
+```
+
+The next steps are similar to building for FreeBSD, see [FreeBSD target](#freebsd-target).
+
 ## macOS target
 
 Install rust standard library for `aarch64-apple-darwin`.
