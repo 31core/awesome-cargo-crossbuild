@@ -22,6 +22,7 @@ Set up linker `~/.cargo/config.toml`.
 linker = "clang"
 rustflags = [
   "-C", "link-arg=--sysroot=/home/xxx/freebsd-sysroot",
+  "-C", "link-arg=-Wl,--dynamic-linker=/libexec/ld-elf.so.1",
 ]
 ```
 
