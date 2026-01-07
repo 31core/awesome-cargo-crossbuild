@@ -30,8 +30,8 @@ Set up environment variables.
 ```shell
 export TARGET_CC=clang
 export TARGET_CXX=clang++
-export TARGET_CFLAGS="-target x86_64-unkown-freebsd --sysroot $HOME/freebsd-sysroot"
-export TARGET_CXXFLAGS="-target x86_64-unkown-freebsd --sysroot $HOME/freebsd-sysroot"
+export TARGET_CFLAGS="--sysroot $HOME/freebsd-sysroot"
+export TARGET_CXXFLAGS="--sysroot $HOME/freebsd-sysroot"
 ```
 
 Start building!
