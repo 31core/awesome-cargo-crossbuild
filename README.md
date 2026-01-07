@@ -82,7 +82,7 @@ Install rust standard library for `aarch64-apple-darwin`.
 rustup target add aarch64-apple-darwin
 ```
 
-Set up [osxcross](https://github.com/tpoechtrager/osxcross) toolchain.
+Set up [osxcross](https://github.com/tpoechtrager/osxcross) toolchain, here suppose you put the SDK under your home directory.
 
 Set up linker in `~/.cargo/config.toml`.
 ```toml
@@ -94,6 +94,7 @@ Set up environment variables.
 ```shell
 export TARGET_CC=aarch64-apple-darwin25.2-cc
 export TARGET_CXX=aarch64-apple-darwin25.2-c++
+export BINDGEN_EXTRA_CLANG_ARGS="--sysroot $HOME/MacOSX26.2.sdk/SDK/MacOSX26.2.sdk"
 ```
 
 Start building!
